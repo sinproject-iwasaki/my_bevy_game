@@ -12,6 +12,7 @@ fn main() {
         .add_plugins(plugin)
         .add_systems(Startup, setup::setup)
         .add_systems(Update, input::keyboard_input_system)
+        .add_systems(Update, input::check_esc_to_exit)
         .run();
 }
 
