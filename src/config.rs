@@ -1,7 +1,4 @@
-const UNIT_SIZE: (u32, u32) = (40, 40);
-const UNIT_LENGTH: (u32, u32) = (10, 18);
-
-const WINDOW_TITLE: &str = "I am a window!";
+use crate::constants::{UNIT_LENGTH, UNIT_SIZE, WINDOW_TITLE};
 
 pub struct WindowConfig {
     pub title: String,
@@ -10,9 +7,9 @@ pub struct WindowConfig {
 }
 
 impl WindowConfig {
-    pub fn new(title: &str, width: u32, height: u32) -> WindowConfig {
+    pub fn new(title: String, width: u32, height: u32) -> WindowConfig {
         Self {
-            title: title.to_string(),
+            title,
             width,
             height,
         }
@@ -24,7 +21,7 @@ impl WindowConfig {
 
     fn create_with_default_size(title: &str) -> WindowConfig {
         let (width, height) = Self::calculate_window_size();
-        Self::new(title, width, height)
+        Self::new(title.to_string(), width, height)
     }
 }
 
