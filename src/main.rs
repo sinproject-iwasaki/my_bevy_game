@@ -1,8 +1,13 @@
 use bevy::{app::PluginGroupBuilder, prelude::*};
+mod camera;
 mod config;
+mod constants;
 mod input;
 mod setup;
+mod sprite;
+mod text;
 mod text_resources;
+mod utils;
 mod window;
 
 fn main() {
