@@ -1,7 +1,18 @@
 {
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "rust-lang.rust-analyzer",
-  "cSpell.words": ["Cacher", "minigrep", "Validatable"],
+  "cSpell.words": [
+    "aarch",
+    "Cacher",
+    "minigrep",
+    "msvc",
+    "Noto",
+    "rustflags",
+    "Validatable",
+    "Zshare",
+    "Zthreads"
+  ],
   "editor.tabSize": 4,
-  "rust-analyzer.linkedProjects": ["./Cargo.toml", "./Cargo.toml", "./Cargo.toml", "./Cargo.toml"]
+  "rust-analyzer.linkedProjects": ["./Cargo.toml"],
+  "rust-analyzer.showUnlinkedFileNotification": false
 }

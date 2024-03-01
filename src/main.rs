@@ -1,51 +1,27 @@
-use bevy::prelude::*;
+use bevy::{app::PluginGroupBuilder, prelude::*};
+mod config;
+mod input;
+mod setup;
+mod text_resources;
+mod window;
 
 fn main() {
+    let plugin = init_plugin();
+
     App::new()
-        .add_plugins(DefaultPlugins.set(WindowPlugin {
-            primary_window: Some(Window {
-                title: "I am a window!".into(),
-                resolution: (600., 400.).into(),
-                ..default()
-            }),
-            ..default()
-        }))
-        .add_systems(Startup, setup)
-        .add_systems(Update, keyboard_input_system)
+        .add_plugins(plugin)
+        .add_systems(Startup, setup::setup)
+        .add_systems(Update, input::keyboard_input_system)
         .run();
 }
 
-fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
-    let font = asset_server.load("fonts/NotoSerifJP-Medium.otf");
+fn init_plugin() -> PluginGroupBuilder {
+    let window = window::init_window();
 
-    commands.spawn(Camera2dBundle::default());
+    let window_plugin = WindowPlugin {
+        primary_window: Some(window),
+        ..default()
+    };
 
-    commands.spawn(
-        TextBundle::from_section(
-            "初めてテキストを日本語で表示できたよ！\n２行目もかけた\n「A」押したら文字が出るよ\n",
-            TextStyle {
-                font: font.clone(),
-                font_size: 52.0,
-                color: Color::WHITE,
-                ..default()
-            },
-        )
-        .with_style(Style {
-            margin: UiRect::all(Val::Px(25.0)),
-            // position_type: PositionType::Absolute,
-            // top: Val::Px(20.0),
-            // left: Val::Px(20.0),
-            ..default()
-        }),
-    );
-}
-
-fn keyboard_input_system(mut text: Query<&mut Text>, key_code: Res<ButtonInput<KeyCode>>) {
-    if key_code.just_pressed(KeyCode::KeyA) {
-        info!("'A' currently pressed");
-        let mut text = text.single_mut();
-        let text = &mut text.sections[0].value;
-
-        text.push_str("あ");
-    }
+    DefaultPlugins.set(window_plugin)
 }
