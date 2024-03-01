@@ -12,7 +12,22 @@ fn init_and_display_text(commands: &mut Commands, asset_server: Res<AssetServer>
     text_resources.spawn_text_entity(commands, initial_text);
 }
 
+fn init_sprite(commands: &mut Commands) {
+    let sprite = Sprite {
+        custom_size: Some(Vec2::new(20.0, 20.0)),
+        ..default()
+    };
+
+    let sprite_bundle = SpriteBundle {
+        sprite,
+        ..default()
+    };
+
+    commands.spawn(sprite_bundle);
+}
+
 pub fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
     spawn_camera(&mut commands);
     init_and_display_text(&mut commands, asset_server);
+    init_sprite(&mut commands);
 }
