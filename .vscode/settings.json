@@ -1,0 +1,7 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "rust-lang.rust-analyzer",
+  "cSpell.words": ["Cacher", "minigrep", "Validatable"],
+  "editor.tabSize": 4,
+  "rust-analyzer.linkedProjects": ["./Cargo.toml", "./Cargo.toml", "./Cargo.toml", "./Cargo.toml"]
+}
