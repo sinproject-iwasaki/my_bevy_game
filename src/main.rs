@@ -18,6 +18,7 @@ fn main() {
         .add_systems(Startup, setup::setup)
         .add_systems(Update, input::keyboard_input_system)
         .add_systems(Update, input::check_esc_to_exit)
+        .add_systems(Update, sprite::position_transform)
         .run();
 }
 
