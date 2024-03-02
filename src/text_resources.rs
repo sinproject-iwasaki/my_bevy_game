@@ -13,7 +13,7 @@ impl TextResources {
     pub fn create_text_style(&self) -> TextStyle {
         TextStyle {
             font: self.font.clone(),
-            font_size: 52.0,
+            font_size: 36.0,
             color: Color::WHITE,
             ..default()
         }
@@ -21,7 +21,11 @@ impl TextResources {
 
     pub fn create_text_bundle(&self, text: &str) -> TextBundle {
         TextBundle::from_section(text, self.create_text_style()).with_style(Style {
-            margin: UiRect::all(Val::Px(25.0)),
+            align_self: AlignSelf::Center,
+            position_type: PositionType::Absolute,
+            left: Val::Px(0.0),
+            bottom: Val::Px(50.0),
+            margin: UiRect::all(Val::Px(15.0)),
             ..default()
         })
     }

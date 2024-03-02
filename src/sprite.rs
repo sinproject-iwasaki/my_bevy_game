@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 
-use crate::{color_resources::ColorResources, constants, utils};
+use crate::{block_pattern::BlockPatterns, color_resources::ColorResources, constants, utils};
 
 #[derive(Component)]
 pub struct Position {
@@ -44,9 +44,37 @@ pub fn spawn_sprite_at(commands: &mut Commands, windows: Query<&Window>, positio
     commands.spawn(sprite_bundle);
 }
 
+fn spawn_block_element(commands: &mut Commands, position: Position, color: Color) {
+    commands
+        .spawn(SpriteBundle {
+            sprite: Sprite { color, ..default() },
+            ..default()
+        })
+        .insert(position);
+}
+
+pub fn spawn_block(mut commands: Commands, block_patterns: Res<BlockPatterns>) {
+    let block = block_patterns.random().unwrap();
+
+    let initial_x = constants::UNIT_LENGTH.0 / 2;
+    let initial_y = constants::UNIT_LENGTH.1 - 4;
+
+    block.positions.iter().for_each(|(x, y)| {
+        let position = Position {
+            x: x + initial_x as i32,
+            y: y + initial_y as i32,
+        };
+
+        spawn_block_element(&mut commands, position, block.color);
+    });
+}
+
 pub fn spawn_sprite(commands: &mut Commands) {
     commands
-        .spawn(SpriteBundle { ..default() })
+        .spawn(SpriteBundle {
+            sprite: Sprite { ..default() },
+            ..default()
+        })
         .insert(Position { x: 3, y: 4 });
 }
 
