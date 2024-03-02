@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 
-use crate::{constants, utils};
+use crate::{color_resources::ColorResources, constants, utils};
 
 #[derive(Component)]
 pub struct Position {
@@ -47,7 +47,15 @@ pub fn spawn_sprite_at(commands: &mut Commands, windows: Query<&Window>, positio
 pub fn spawn_sprite(commands: &mut Commands) {
     commands
         .spawn(SpriteBundle { ..default() })
-        .insert(Position { x: 0, y: 3 });
+        .insert(Position { x: 3, y: 4 });
+}
+
+pub fn change_color(mut query: Query<&mut Sprite>, color_resources: Res<ColorResources>) {
+    let color = color_resources.random().unwrap();
+
+    query.iter_mut().for_each(|mut sprite| {
+        sprite.color = color;
+    });
 }
 
 pub fn position_transform(
