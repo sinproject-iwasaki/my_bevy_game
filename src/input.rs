@@ -9,7 +9,7 @@ pub fn keyboard_input_system(
         let mut text = text.single_mut();
         let text = &mut text.sections[0].value;
 
-        text.push_str("あ");
+        text.push('あ');
     }
 }
 

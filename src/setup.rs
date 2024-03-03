@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 
-use crate::{camera, sprite, text};
+use crate::{camera, text};
 
 pub fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
     camera::spawn_camera(&mut commands);

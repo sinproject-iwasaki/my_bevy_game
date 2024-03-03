@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 
-use crate::{block_pattern::BlockPatterns, color_resources::ColorResources, constants, utils};
+use crate::{block_pattern::BlockPatterns, constants, utils};
 
 #[derive(Component)]
 pub struct Position {
@@ -24,25 +24,25 @@ pub fn calculate_translation(origin: Vec2, position: Vec2) -> Vec3 {
     Vec3::new(translation_vec2.x, translation_vec2.y, 0.0)
 }
 
-pub fn spawn_sprite_at(commands: &mut Commands, windows: Query<&Window>, position: Vec2) {
-    let sprite = Sprite {
-        custom_size: Some(unit_size()),
-        ..default()
-    };
+// pub fn spawn_sprite_at(commands: &mut Commands, windows: Query<&Window>, position: Vec2) {
+//     let sprite = Sprite {
+//         custom_size: Some(unit_size()),
+//         ..default()
+//     };
 
-    let window = windows.single();
-    let origin = utils::calculate_origin(window);
-    let translation = calculate_translation(origin, position);
-    let transform: Transform = Transform::from_translation(translation);
+//     let window = windows.single();
+//     let origin = utils::calculate_origin(window);
+//     let translation = calculate_translation(origin, position);
+//     let transform: Transform = Transform::from_translation(translation);
 
-    let sprite_bundle = SpriteBundle {
-        sprite,
-        transform,
-        ..default()
-    };
+//     let sprite_bundle = SpriteBundle {
+//         sprite,
+//         transform,
+//         ..default()
+//     };
 
-    commands.spawn(sprite_bundle);
-}
+//     commands.spawn(sprite_bundle);
+// }
 
 fn spawn_block_element(commands: &mut Commands, position: Position, color: Color) {
     commands
@@ -69,22 +69,22 @@ pub fn spawn_block(mut commands: Commands, block_patterns: Res<BlockPatterns>) {
     });
 }
 
-pub fn spawn_sprite(commands: &mut Commands) {
-    commands
-        .spawn(SpriteBundle {
-            sprite: Sprite { ..default() },
-            ..default()
-        })
-        .insert(Position { x: 3, y: 4 });
-}
+// pub fn spawn_sprite(commands: &mut Commands) {
+//     commands
+//         .spawn(SpriteBundle {
+//             sprite: Sprite { ..default() },
+//             ..default()
+//         })
+//         .insert(Position { x: 3, y: 4 });
+// }
 
-pub fn change_color(mut query: Query<&mut Sprite>, color_resources: Res<ColorResources>) {
-    let color = color_resources.random().unwrap();
+// pub fn change_color(mut query: Query<&mut Sprite>, color_resources: Res<ColorResources>) {
+//     let color = color_resources.random().unwrap();
 
-    query.iter_mut().for_each(|mut sprite| {
-        sprite.color = color;
-    });
-}
+//     query.iter_mut().for_each(|mut sprite| {
+//         sprite.color = color;
+//     });
+// }
 
 pub fn position_transform(
     windows: Query<&Window>,

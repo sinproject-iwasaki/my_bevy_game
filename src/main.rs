@@ -1,5 +1,4 @@
 use bevy::{app::PluginGroupBuilder, prelude::*};
-use color_resources::ColorResources;
 mod block_pattern;
 mod camera;
 mod color_resources;
@@ -15,7 +14,7 @@ mod window;
 
 fn main() {
     let plugin = init_plugin();
-    let color_resources = ColorResources::generate_example();
+    // let color_resources = ColorResources::generate_example();
     let block_patterns = block_pattern::BlockPatterns::new();
 
     App::new()
