@@ -2,12 +2,10 @@ pre-commit:
   parallel: true
   commands:
     cargo-outdated:
-      run: cargo outdated --root-deps-only
+      run: cargo outdated -R
     cargo-fmt:
       # glob: "*.{rs,toml}"
       run: cargo fmt -- --check
-    cargo-check:
-      run: cargo check
     cargo-clippy:
       run: cargo clippy -- -D warnings
     cargo-test:
