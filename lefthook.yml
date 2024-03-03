@@ -1,3 +1,31 @@
+pre-commit:
+  parallel: true
+  commands:
+    cargo-fmt:
+      # glob: "*.{rs,toml}"
+      run: cargo fmt -- --check
+    cargo-check:
+      run: cargo check
+    cargo-clippy:
+      run: cargo clippy -- -D warnings
+    cargo-test:
+      run: cargo test
+    cargo-test-integration:
+      run: cargo test --tests
+    # cargo-test-doc:
+    #   run: cargo test --doc
+    cargo-audit:
+      run: cargo audit
+
+pre-push:
+  parallel: true
+  commands:
+    cargo-test:
+      run: cargo test
+    cargo-audit:
+      run: cargo audit
+    # cargo-benchmark:
+    #   run: cargo bench
 # EXAMPLE USAGE:
 #
 #   Refer for explanation to following link:

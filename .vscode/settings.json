@@ -4,11 +4,13 @@
   "cSpell.words": [
     "aarch",
     "Cacher",
+    "clippy",
     "minigrep",
     "msvc",
     "Noto",
     "rngs",
     "rustflags",
+    "rustfmt",
     "Validatable",
     "Zshare",
     "Zthreads"

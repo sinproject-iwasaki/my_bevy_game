@@ -15,7 +15,6 @@ impl TextResources {
             font: self.font.clone(),
             font_size: 36.0,
             color: Color::WHITE,
-            ..default()
         }
     }
 
