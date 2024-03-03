@@ -1,6 +1,8 @@
 pre-commit:
   parallel: true
   commands:
+    cargo-outdated:
+      run: cargo outdated --root-deps-only
     cargo-fmt:
       # glob: "*.{rs,toml}"
       run: cargo fmt -- --check
