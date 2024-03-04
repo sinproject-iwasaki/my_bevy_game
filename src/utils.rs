@@ -10,9 +10,20 @@ pub fn unit_size() -> Vec2 {
     vec2_from_tuple(constants::UNIT_SIZE)
 }
 
-pub fn calculate_origin(window: &Window) -> Vec2 {
-    let half_unit_size = unit_size() / 2.0;
-    let half_window_size = Vec2::new(window.width(), window.height()) / 2.0;
+#[cfg(test)]
+mod tests {
+    use super::*;
 
-    half_unit_size - half_window_size
+    #[test]
+    fn test_vec2_from_tuple() {
+        let tuple = (100, 50);
+        let result = vec2_from_tuple(tuple);
+        assert_eq!(result, Vec2::new(100.0, 50.0));
+    }
+
+    #[test]
+    fn test_unit_size() {
+        let result = unit_size();
+        assert_eq!(result, vec2_from_tuple(constants::UNIT_SIZE));
+    }
 }

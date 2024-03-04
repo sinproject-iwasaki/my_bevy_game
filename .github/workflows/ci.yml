@@ -63,8 +63,8 @@ jobs:
     - name: Run tests
       run: cargo test --verbose
 
-    - name: Run integration tests
-      run: cargo test --tests --verbose
+    # - name: Run integration tests
+    #   run: cargo test --tests --verbose
 
     - name: Check audit
       run: cargo audit

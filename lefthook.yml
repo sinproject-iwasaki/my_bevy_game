@@ -10,8 +10,8 @@ pre-commit:
       run: cargo clippy -- -D warnings
     cargo-test:
       run: cargo test
-    cargo-test-integration:
-      run: cargo test --tests
+    # cargo-test-integration:
+    #   run: cargo test --tests
     # cargo-test-doc:
     #   run: cargo test --doc
     cargo-audit:

@@ -11,7 +11,9 @@
     "rngs",
     "rustflags",
     "rustfmt",
+    "Tetris",
     "Validatable",
+    "Winit",
     "Zshare",
     "Zthreads"
   ],

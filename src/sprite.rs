@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 
-use crate::{block_pattern::BlockPatterns, constants, utils};
+use crate::{block_pattern::BlockPatterns, constants, utils, window};
 
 #[derive(Component)]
 pub struct Position {
@@ -91,7 +91,7 @@ pub fn position_transform(
     mut position_query: Query<(&Position, &mut Transform, &mut Sprite)>,
 ) {
     let window = windows.single();
-    let origin = utils::calculate_origin(window);
+    let origin = window::calculate_origin(window);
 
     position_query
         .iter_mut()
