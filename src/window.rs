@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 
-use crate::config;
+use crate::{config, utils::unit_size};
 
 fn create_window(title: String, width: u32, height: u32) -> Window {
     Window {
@@ -18,4 +18,11 @@ pub fn init_window() -> Window {
         window_config.width,
         window_config.height,
     )
+}
+
+pub fn calculate_origin(window: &Window) -> Vec2 {
+    let half_unit_size = unit_size() / 2.0;
+    let half_window_size = Vec2::new(window.width(), window.height()) / 2.0;
+
+    half_unit_size - half_window_size
 }

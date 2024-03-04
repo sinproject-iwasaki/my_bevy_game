@@ -28,3 +28,28 @@ impl WindowConfig {
 pub fn create_window_config() -> WindowConfig {
     WindowConfig::create_with_default_size(WINDOW_TITLE)
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_window_config_creation() {
+        let title = "Test Window".to_string();
+        let width = 800;
+        let height = 600;
+        let window_config = WindowConfig::new(title.clone(), width, height);
+
+        assert_eq!(window_config.title, title);
+        assert_eq!(window_config.width, width);
+        assert_eq!(window_config.height, height);
+    }
+
+    #[test]
+    fn test_default_window_size() {
+        let window_config = WindowConfig::create_with_default_size("Default Size Window");
+        let expected_size = WindowConfig::calculate_window_size();
+
+        assert_eq!((window_config.width, window_config.height), expected_size);
+    }
+}
