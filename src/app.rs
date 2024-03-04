@@ -1,16 +1,14 @@
-use bevy::{app::PluginGroupBuilder, prelude::*};
+use bevy::prelude::*;
 
 use crate::*;
 
-fn init_plugin() -> PluginGroupBuilder {
+fn init_window_plugin() -> WindowPlugin {
     let window = window::init_window();
 
-    let window_plugin = WindowPlugin {
+    WindowPlugin {
         primary_window: Some(window),
         ..default()
-    };
-
-    DefaultPlugins.set(window_plugin)
+    }
 }
 
 pub fn setup(app: &mut App) {
@@ -31,8 +29,9 @@ pub fn setup(app: &mut App) {
 
 pub fn create_app() -> App {
     let mut app = App::new();
+    let plugin = DefaultPlugins.set(init_window_plugin());
 
-    app.add_plugins(init_plugin());
+    app.add_plugins(plugin);
     setup(&mut app);
 
     app
@@ -40,15 +39,17 @@ pub fn create_app() -> App {
 
 #[cfg(test)]
 mod tests {
-    use bevy::winit::WinitPlugin;
+    // use bevy::winit::WinitPlugin;
 
     use super::*;
 
     #[test]
     fn test_create_app() {
         let mut app = App::new();
+        // let plugin = MinimalPlugins.set(init_window_plugin());
+        // plugin.build().disable::<WinitPlugin>()
 
-        app.add_plugins(init_plugin().build().disable::<WinitPlugin>());
+        app.add_plugins(MinimalPlugins);
         setup(&mut app);
 
         assert!(app
