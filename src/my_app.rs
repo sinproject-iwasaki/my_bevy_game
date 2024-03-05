@@ -1,6 +1,11 @@
 use bevy::prelude::*;
 
-use crate::*;
+use crate::block_pattern;
+use crate::camera;
+use crate::input;
+use crate::sprite;
+use crate::text;
+use crate::window;
 
 fn init_window_plugin() -> WindowPlugin {
     let window = window::init_window();

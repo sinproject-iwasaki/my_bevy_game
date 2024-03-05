@@ -75,8 +75,22 @@ impl BlockPatterns {
         Self(patterns)
     }
 
+    pub fn is_empty(&self) -> bool {
+        self.0.is_empty()
+    }
+
+    pub fn len(&self) -> usize {
+        self.0.len()
+    }
+
     pub fn random(&self) -> Option<&BlockPattern> {
         self.0.choose(&mut rand::thread_rng())
+    }
+}
+
+impl Default for BlockPatterns {
+    fn default() -> Self {
+        Self::new()
     }
 }
 
@@ -135,5 +149,17 @@ mod tests {
             assert_eq!(pattern.color, test.expected_color);
             assert_eq!(pattern.positions, test.expected_positions);
         }
+    }
+
+    #[test]
+    fn test_is_empty() {
+        let block_patterns = BlockPatterns::default();
+        assert!(!block_patterns.is_empty());
+    }
+
+    #[test]
+    fn test_block_patterns_length() {
+        let block_patterns = BlockPatterns::default();
+        assert_eq!(block_patterns.len(), 7);
     }
 }
