@@ -97,58 +97,27 @@ impl Default for BlockPatterns {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use rstest::rstest;
 
-    struct PatternTest {
-        pattern: fn() -> BlockPattern,
-        expected_color: Color,
-        expected_positions: Vec<(i32, i32)>,
-    }
-
-    #[test]
-    fn test_block_patterns() {
-        let tests = vec![
-            PatternTest {
-                pattern: BlockPattern::i,
-                expected_color: Color::rgb_u8(110, 237, 240),
-                expected_positions: vec![(0, 0), (0, -1), (0, 1), (0, 2)],
-            },
-            PatternTest {
-                pattern: BlockPattern::l,
-                expected_color: Color::rgb_u8(230, 163, 58),
-                expected_positions: vec![(0, 0), (0, -1), (0, 1), (-1, 1)],
-            },
-            PatternTest {
-                pattern: BlockPattern::j,
-                expected_color: Color::rgb_u8(0, 0, 232),
-                expected_positions: vec![(0, 0), (0, -1), (0, 1), (1, 1)],
-            },
-            PatternTest {
-                pattern: BlockPattern::z,
-                expected_color: Color::rgb_u8(220, 48, 33),
-                expected_positions: vec![(0, 0), (0, -1), (1, 0), (1, 1)],
-            },
-            PatternTest {
-                pattern: BlockPattern::s,
-                expected_color: Color::rgb_u8(110, 237, 72),
-                expected_positions: vec![(0, 0), (1, 0), (0, 1), (1, -1)],
-            },
-            PatternTest {
-                pattern: BlockPattern::o,
-                expected_color: Color::rgb_u8(243, 241, 80),
-                expected_positions: vec![(0, 0), (0, 1), (1, 0), (1, 1)],
-            },
-            PatternTest {
-                pattern: BlockPattern::t,
-                expected_color: Color::rgb_u8(148, 29, 230),
-                expected_positions: vec![(0, 0), (-1, 0), (1, 0), (0, 1)],
-            },
-        ];
-
-        for test in tests {
-            let pattern = (test.pattern)();
-            assert_eq!(pattern.color, test.expected_color);
-            assert_eq!(pattern.positions, test.expected_positions);
-        }
+    #[rstest]
+    #[case::i(BlockPattern::i(), Color::rgb_u8(110, 237, 240), vec![(0, 0), (0, -1), (0, 1), (0, 2)])]
+    #[case::l(BlockPattern::l(), Color::rgb_u8(230, 163, 58), vec![(0, 0), (0, -1), (0, 1), (-1, 1)])]
+    #[case::j(BlockPattern::j(), Color::rgb_u8(0, 0, 232), vec![(0, 0), (0, -1), (0, 1), (1, 1)])]
+    #[case::z(BlockPattern::z(), Color::rgb_u8(220, 48, 33), vec![(0, 0), (0, -1), (1, 0), (1, 1)])]
+    #[case::s(BlockPattern::s(), Color::rgb_u8(110, 237, 72), vec![(0, 0), (1, 0), (0, 1), (1, -1)])]
+    #[case::o(BlockPattern::o(), Color::rgb_u8(243, 241, 80), vec![(0, 0), (0, 1), (1, 0), (1, 1)])]
+    #[case::t(BlockPattern::t(), Color::rgb_u8(148, 29, 230), vec![(0, 0), (-1, 0), (1, 0), (0, 1)])]
+    #[should_panic]
+    #[case::color_mismatch(BlockPattern::l(), Color::rgb_u8(110, 237, 240), vec![(0, 0), (0, -1), (0, 1), (-1, 1)])]
+    #[should_panic]
+    #[case::positions_mismatch(BlockPattern::l(), Color::rgb_u8(230, 163, 58), vec![(0, 0), (0, -1), (1, 1), (-1, 1)])]
+    fn test_block_patterns(
+        #[case] pattern: BlockPattern,
+        #[case] expected_color: Color,
+        #[case] expected_positions: Vec<(i32, i32)>,
+    ) {
+        assert_eq!(pattern.color, expected_color);
+        assert_eq!(pattern.positions, expected_positions)
     }
 
     #[test]

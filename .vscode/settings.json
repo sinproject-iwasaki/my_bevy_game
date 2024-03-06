@@ -9,6 +9,7 @@
     "msvc",
     "Noto",
     "rngs",
+    "rstest",
     "rustflags",
     "rustfmt",
     "Tetris",
