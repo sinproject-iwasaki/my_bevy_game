@@ -13,17 +13,19 @@ pub fn unit_size() -> Vec2 {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use rstest::rstest;
 
-    #[test]
-    fn test_vec2_from_tuple() {
-        let tuple = (100, 50);
-        let result = vec2_from_tuple(tuple);
-        assert_eq!(result, Vec2::new(100.0, 50.0));
+    #[rstest]
+    #[case::tuple((100, 50), Vec2::new(100.0, 50.0))]
+    #[case::tuple((200, 100), Vec2::new(200.0, 100.0))]
+    fn test_vec2_from_tuple(#[case] tuple: (u32, u32), #[case] expected: Vec2) {
+        let actual = vec2_from_tuple(tuple);
+        assert_eq!(actual, expected);
     }
 
     #[test]
     fn test_unit_size() {
-        let result = unit_size();
-        assert_eq!(result, vec2_from_tuple(constants::UNIT_SIZE));
+        let actual = unit_size();
+        assert_eq!(actual, vec2_from_tuple(constants::UNIT_SIZE));
     }
 }

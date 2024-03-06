@@ -10,6 +10,7 @@ mod sprite;
 mod text;
 mod text_resources;
 mod utils;
+mod validator;
 mod window;
 
 pub fn run() {
