@@ -102,7 +102,7 @@ mod tests {
         #[case] expected_color: Color,
         #[case] expected_positions: Vec<(i32, i32)>,
     ) {
-        assert_eq!(expected_color, pattern.color);
-        assert_eq!(expected_positions, pattern.positions)
+        assert_eq!(pattern.color, expected_color);
+        assert_eq!(pattern.positions, expected_positions)
     }
 }
