@@ -30,22 +30,22 @@ mod test {
     #[rstest]
     #[case::min_1("T", 1, 10)]
     #[case::max_50("12345678901234567890123456789012345678901234567890", 1, 50)]
-    #[should_panic]
-    #[case::min_1_empty("", 1, 10)]
-    #[should_panic]
-    #[case::max_50_over("123456789012345678901234567890123456789012345678901", 1, 50)]
+    #[should_panic(expected = "Value must be between 1 and 10 characters long: 0")]
+    #[case::min_less("", 1, 10)]
+    #[should_panic(expected = "Value must be between 1 and 50 characters long: 51")]
+    #[case::max_over("123456789012345678901234567890123456789012345678901", 1, 50)]
     fn test_validate_string_length(#[case] value: &str, #[case] min: usize, #[case] max: usize) {
-        assert!(validate_string_length(value, min, max).is_ok());
+        validate_string_length(value, min, max).unwrap();
     }
 
     #[rstest]
     #[case::min_1(1, 1, 10)]
     #[case::max_50(50, 1, 50)]
-    #[should_panic]
-    #[case::min_0(0, 1, 10)]
-    #[should_panic]
-    #[case::max_51(51, 1, 50)]
+    #[should_panic(expected = "Value must be between 1 and 10: 0")]
+    #[case::min_less(0, 1, 10)]
+    #[should_panic(expected = "Value must be between 1 and 50: 51")]
+    #[case::max_over(51, 1, 50)]
     fn test_validate_numeric_range(#[case] value: u32, #[case] min: u32, #[case] max: u32) {
-        assert!(validate_numeric_range(value, min, max).is_ok());
+        validate_numeric_range(value, min, max).unwrap();
     }
 }
