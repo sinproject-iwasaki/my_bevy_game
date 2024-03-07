@@ -1,5 +1,3 @@
-extern crate my_bevy_game;
-
 use bevy::prelude::*;
 use my_bevy_game::*;
 
