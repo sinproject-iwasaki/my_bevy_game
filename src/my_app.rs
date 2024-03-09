@@ -49,6 +49,11 @@ mod tests {
     use super::*;
 
     #[test]
+    fn test_init_window_plugin() {
+        init_window_plugin();
+    }
+
+    #[test]
     fn test_create_app() {
         let mut app = App::new();
         // let plugin = MinimalPlugins.set(init_window_plugin());

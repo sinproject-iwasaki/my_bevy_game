@@ -5,6 +5,7 @@ mod config;
 mod constants;
 mod input;
 pub mod my_app;
+mod position;
 mod setup;
 mod sprite;
 mod text;

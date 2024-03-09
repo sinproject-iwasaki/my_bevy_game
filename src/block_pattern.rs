@@ -131,4 +131,11 @@ mod tests {
         let block_patterns = BlockPatterns::default();
         assert_eq!(block_patterns.len(), 7);
     }
+
+    #[test]
+    fn test_random() {
+        let block_patterns = BlockPatterns::default();
+
+        assert!(block_patterns.random().is_some());
+    }
 }

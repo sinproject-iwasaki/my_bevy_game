@@ -6,6 +6,7 @@ fn init_game_app() -> App {
 
     app.add_plugins(MinimalPlugins);
     my_app::setup(&mut app);
+    // app.update();
 
     app
 }
