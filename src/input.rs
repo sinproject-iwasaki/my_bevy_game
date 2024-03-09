@@ -1,5 +1,6 @@
 use bevy::{app::AppExit, prelude::*};
 
+#[cfg_attr(coverage_nightly, coverage(off))]
 pub fn keyboard_input_system(
     mut text: Query<&mut Text>,
     keyboard_input: Res<ButtonInput<KeyCode>>,
@@ -13,6 +14,7 @@ pub fn keyboard_input_system(
     }
 }
 
+#[cfg_attr(coverage_nightly, coverage(off))]
 pub fn check_esc_to_exit(
     keyboard_input: Res<ButtonInput<KeyCode>>,
     mut app_exit_events: EventWriter<AppExit>,

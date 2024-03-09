@@ -114,6 +114,12 @@ mod tests {
     #[case::normal("Test Window", 800, 600)]
     #[case::min_1("T", 1, 1)]
     #[case::max_1000("12345678901234567890123456789012345678901234567890", 1000, 1000)]
+    #[should_panic]
+    #[case::panic_title("", 1, 1)]
+    #[should_panic]
+    #[case::panic_width("T", 0, 1)]
+    #[should_panic]
+    #[case::panic_height("T", 1, 0)]
     fn test_window_config_creation(#[case] title: &str, #[case] width: u32, #[case] height: u32) {
         let window_config = WindowConfig::new(title, width, height).unwrap();
 
@@ -131,5 +137,10 @@ mod tests {
             (window_config.width.value(), window_config.height.value()),
             expected_size
         );
+    }
+
+    #[test]
+    fn test_create_window_config() {
+        create_window_config().unwrap();
     }
 }

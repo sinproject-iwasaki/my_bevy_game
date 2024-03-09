@@ -32,6 +32,7 @@ pub fn setup(app: &mut App) {
         .add_systems(Update, sprite::spawn_block);
 }
 
+#[cfg_attr(coverage_nightly, coverage(off))]
 pub fn create_app() -> App {
     let mut app = App::new();
     let plugin = DefaultPlugins.set(init_window_plugin());
@@ -47,6 +48,11 @@ mod tests {
     // use bevy::winit::WinitPlugin;
 
     use super::*;
+
+    #[test]
+    fn test_init_window_plugin() {
+        init_window_plugin();
+    }
 
     #[test]
     fn test_create_app() {
