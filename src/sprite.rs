@@ -22,6 +22,7 @@ use crate::{block_pattern::BlockPatterns, constants, position::Position, utils, 
 //     commands.spawn(sprite_bundle);
 // }
 
+#[cfg_attr(coverage_nightly, coverage(off))]
 fn spawn_block_element(commands: &mut Commands, position: Position, color: Color) {
     commands
         .spawn(SpriteBundle {
@@ -31,6 +32,7 @@ fn spawn_block_element(commands: &mut Commands, position: Position, color: Color
         .insert(position);
 }
 
+#[cfg_attr(coverage_nightly, coverage(off))]
 pub fn spawn_block(mut commands: Commands, block_patterns: Res<BlockPatterns>) {
     let block = block_patterns.random().unwrap();
 
@@ -61,6 +63,7 @@ pub fn spawn_block(mut commands: Commands, block_patterns: Res<BlockPatterns>) {
 //     });
 // }
 
+#[cfg_attr(coverage_nightly, coverage(off))]
 pub fn position_transform(
     windows: Query<&Window>,
     mut position_query: Query<(&Position, &mut Transform, &mut Sprite)>,
