@@ -33,7 +33,7 @@ fn spawn_block_element(commands: &mut Commands, position: Position, color: Color
 }
 
 #[cfg_attr(coverage_nightly, coverage(off))]
-pub fn spawn_block(mut commands: Commands, block_patterns: Res<BlockPatterns>) {
+pub fn spawn_block(commands: &mut Commands, block_patterns: &mut Res<BlockPatterns>) {
     let block = block_patterns.random().unwrap();
 
     let initial_x = (constants::UNIT_LENGTH.0 / 2) as i32;
@@ -42,7 +42,7 @@ pub fn spawn_block(mut commands: Commands, block_patterns: Res<BlockPatterns>) {
     block.positions.iter().for_each(|(x, y)| {
         let position = Position::new(x + initial_x, y + initial_y);
 
-        spawn_block_element(&mut commands, position, block.color);
+        spawn_block_element(commands, position, block.color);
     });
 }
 
