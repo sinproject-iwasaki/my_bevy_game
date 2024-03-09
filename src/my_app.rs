@@ -2,6 +2,7 @@ use bevy::prelude::*;
 
 use crate::block_pattern;
 use crate::camera;
+use crate::events;
 use crate::input;
 use crate::sprite;
 use crate::text;
@@ -21,15 +22,18 @@ pub fn setup(app: &mut App) {
     let block_patterns = block_pattern::BlockPatterns::new();
 
     app.insert_resource(block_patterns)
+        .add_event::<events::NewBlockEvent>()
+        .init_resource::<events::EventTriggerState>()
         .add_systems(Startup, camera::spawn_camera)
         .add_systems(Startup, text::spawn_initial_text)
         // .insert_resource(color_resources)
         // .add_systems(Startup, setup::setup)
+        .add_systems(Update, (events::event_trigger, events::event_listener))
         .add_systems(Update, input::keyboard_input_system)
         .add_systems(Update, input::check_esc_to_exit)
-        .add_systems(Update, sprite::position_transform)
-        // .add_systems(Update, sprite::change_color)
-        .add_systems(Update, sprite::spawn_block);
+        .add_systems(Update, sprite::position_transform);
+    // .add_systems(Update, sprite::change_color)
+    // .add_systems(Update, sprite::spawn_block);
 }
 
 #[cfg_attr(coverage_nightly, coverage(off))]

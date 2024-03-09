@@ -5,6 +5,7 @@ mod camera;
 mod color_resources;
 mod config;
 mod constants;
+mod events;
 mod input;
 pub mod my_app;
 mod position;
