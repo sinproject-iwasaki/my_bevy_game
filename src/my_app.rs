@@ -1,6 +1,5 @@
 use bevy::app::PluginGroupBuilder;
 use bevy::prelude::*;
-use bevy::winit::WinitPlugin;
 
 use crate::block_pattern;
 use crate::camera;
@@ -72,10 +71,11 @@ impl MyApp {
 
     pub fn new_for_debug() -> Self {
         let mut app = App::new();
-        let plugin = Self::get_plugins();
-        let plugin = plugin.build().disable::<WinitPlugin>();
+        let plugins = MinimalPlugins;
+        // let plugins = Self::get_plugins();
+        // let plugins = DefaultPlugins.build().disable::<WinitPlugin>();
 
-        app.add_plugins(plugin);
+        app.add_plugins(plugins);
         Self::init(&mut app);
 
         Self { app }
