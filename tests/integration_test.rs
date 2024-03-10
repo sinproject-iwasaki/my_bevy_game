@@ -1,21 +1,14 @@
-use bevy::prelude::*;
+// use bevy::prelude::*;
 use my_bevy_game::*;
 
-fn init_game_app() -> App {
-    let mut app = App::new();
-
-    app.add_plugins(MinimalPlugins);
-    my_app::setup(&mut app);
-    // app.update();
-
-    app
-}
+use my_bevy_game::my_app::MyApp;
 
 #[test]
 fn test_app_creation() {
-    let app = init_game_app();
+    let my_app = MyApp::new_for_debug();
 
-    let block_patterns = app
+    let block_patterns = my_app
+        .app()
         .world
         .get_resource::<block_pattern::BlockPatterns>()
         .unwrap();

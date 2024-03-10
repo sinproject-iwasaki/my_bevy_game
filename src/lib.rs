@@ -6,6 +6,7 @@ mod color_resources;
 mod config;
 mod constants;
 mod events;
+mod game_timer;
 mod input;
 pub mod my_app;
 mod position;
@@ -17,7 +18,9 @@ mod utils;
 mod validator;
 mod window;
 
+use my_app::MyApp;
+
 #[cfg_attr(coverage_nightly, coverage(off))]
 pub fn run() {
-    my_app::create_app().run();
+    MyApp::new().run();
 }
