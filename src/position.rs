@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 
-use crate::utils;
+use crate::{game_timer::GameTimer, utils};
 
 #[derive(Component)]
 pub struct Position {
@@ -23,7 +23,18 @@ impl Position {
 
         Vec3::new(translation_vec2.x, translation_vec2.y, 0.0)
     }
+
+    pub fn block_fall(game_timer: ResMut<GameTimer>, mut position_query: Query<&mut Position>) {
+        if !game_timer.timer().finished() {
+            return;
+        }
+
+        for mut position in position_query.iter_mut() {
+            position.y -= 1;
+        }
+    }
 }
+
 #[cfg(test)]
 mod tests {
     use crate::utils::unit_size;
