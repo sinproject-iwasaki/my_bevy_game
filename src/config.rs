@@ -64,10 +64,8 @@ mod tests {
     fn test_window_config_new() {
         let window_config = WindowConfig::new();
 
-        assert_eq!(window_config.title.value(), WINDOW_TITLE);
-        assert_eq!(
-            (window_config.width(), window_config.height()),
-            (UNIT_SIZE.0 * UNIT_LENGTH.0, UNIT_SIZE.1 * UNIT_LENGTH.1)
-        );
+        assert_eq!(window_config.title(), WINDOW_TITLE);
+        assert_eq!(window_config.width(), UNIT_SIZE.0 * UNIT_LENGTH.0);
+        assert_eq!(window_config.height(), UNIT_SIZE.1 * UNIT_LENGTH.1);
     }
 }

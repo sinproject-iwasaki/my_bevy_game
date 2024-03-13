@@ -76,4 +76,12 @@ mod tests {
     fn test_height_new(#[case] height: u32) {
         assert!(Height::new(height).is_ok());
     }
+
+    #[test]
+    fn test_new_by_unit_size() {
+        let window_size = WindowSize::new_by_unit_size();
+
+        assert_eq!(window_size.width().value(), UNIT_SIZE.0 * UNIT_LENGTH.0);
+        assert_eq!(window_size.height().value(), UNIT_SIZE.1 * UNIT_LENGTH.1);
+    }
 }

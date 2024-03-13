@@ -40,7 +40,7 @@ pub fn spawn_block(commands: &mut Commands, block_patterns: &mut Res<BlockPatter
     let initial_y = (constants::UNIT_LENGTH.1 - 4) as i32;
 
     block.positions.iter().for_each(|(x, y)| {
-        let position = Position::new(x + initial_x, y + initial_y);
+        let position = Position::new(x + initial_x, y + initial_y).unwrap();
 
         spawn_block_element(commands, position, block.color);
     });
