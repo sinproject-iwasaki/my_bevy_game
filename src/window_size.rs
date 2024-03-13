@@ -11,6 +11,10 @@ impl Width {
         Ok(Self(width))
     }
 
+    pub fn new_by_unit() -> Result<Self, String> {
+        Width::new(UNIT_SIZE.0 * UNIT_LENGTH.0)
+    }
+
     pub fn value(&self) -> u32 {
         self.0
     }
@@ -24,6 +28,10 @@ impl Height {
         Ok(Self(height))
     }
 
+    pub fn new_by_unit() -> Result<Self, String> {
+        Height::new(UNIT_SIZE.1 * UNIT_LENGTH.1)
+    }
+
     pub fn value(&self) -> u32 {
         self.0
     }
@@ -33,8 +41,8 @@ pub struct WindowSize(Width, Height);
 
 impl WindowSize {
     pub fn new_by_unit_size() -> Self {
-        let width = Width::new(UNIT_SIZE.0 * UNIT_LENGTH.0).unwrap();
-        let height = Height::new(UNIT_SIZE.1 * UNIT_LENGTH.1).unwrap();
+        let width = Width::new_by_unit().unwrap();
+        let height = Height::new_by_unit().unwrap();
 
         Self(width, height)
     }
