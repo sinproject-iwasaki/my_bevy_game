@@ -11,7 +11,11 @@ pub fn validate_string_length(value: &str, min: usize, max: usize) -> Result<(),
     }
 }
 
-pub fn validate_numeric_range(value: u32, min: u32, max: u32) -> Result<(), String> {
+pub fn validate_numeric_range<T: PartialOrd + Copy + std::fmt::Display>(
+    value: T,
+    min: T,
+    max: T,
+) -> Result<(), String> {
     if (min..=max).contains(&value) {
         Ok(())
     } else {

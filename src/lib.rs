@@ -17,6 +17,7 @@ mod text_resources;
 mod utils;
 mod validator;
 mod window;
+mod window_size;
 
 use my_app::MyApp;
 
